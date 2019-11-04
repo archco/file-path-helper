@@ -8,10 +8,15 @@ const { pathExists } = require('fs-extra');
 */
 
 /**
+ * Glob Options
+ * @typedef {import('glob').IOptions} GlobOptions
+ */
+
+/**
  * Glob promise.
  *
  * @param {string} pattern
- * @param {any} options
+ * @param {GlobOptions} options
  * @returns {Promise.<Array<String>, Error>}
  */
 function globPromise(pattern, options) {
