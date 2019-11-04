@@ -1,0 +1,22 @@
+{
+  "name": "file-path-helper",
+  "version": "1.0.0",
+  "description": "Helpful methods for handling file path.",
+  "main": "src/utils.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [
+    "path"
+  ],
+  "author": "archco",
+  "license": "MIT",
+  "dependencies": {
+    "fs-extra": "^8.1.0",
+    "glob": "^7.1.5"
+  },
+  "devDependencies": {
+    "eslint": "^6.6.0",
+    "jest": "^24.9.0"
+  }
+}
