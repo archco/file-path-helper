@@ -100,6 +100,7 @@ function sortFilesByLastNumber(files) {
 
 /**
  * Auto increase path.
+ * If the same file exists, It's returns filename what increased number.
  *
  * @param {string} path
  * @returns {Promise<string>} auto increased path.

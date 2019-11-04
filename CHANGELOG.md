@@ -8,3 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ## [1.0.0] - 2019-11-04
+
+First Release!
+
+[Unreleased]: https://github.com/archco/file-path-helper/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/archco/file-path-helper/releases/tag/v1.0.0
