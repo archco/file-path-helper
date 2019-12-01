@@ -48,6 +48,12 @@ describe('#setDir', () => {
     const directory = './good';
     expect(setDir(path, directory)).toBe('./good/image.jpg');
   });
+
+  it('should set directory when only file as path.', () => {
+    const path = 'image.jpg';
+    const directory = './dir';
+    expect(setDir(path, directory)).toBe('./dir/image.jpg');
+  });
 });
 
 describe('#getLastNumber', () => {

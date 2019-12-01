@@ -6,6 +6,8 @@ Helpful methods for handling file path.
 
 ### Glob Promise
 
+> This function returns the **Promise** object.
+
 [Glob](https://github.com/isaacs/node-glob#glob) promise.
 
 - @param `string` pattern
@@ -99,7 +101,7 @@ Sort files by last number.
 
 ### Auto Increase
 
-> This is **Async Function**
+> This function returns the **Promise** object.
 
 If the same file exists, It's returns filename what increased number.
 

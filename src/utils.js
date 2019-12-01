@@ -59,7 +59,8 @@ function trimDir(dir, separator = '/') {
  */
 function setDir(path, dir, separator = '/') {
   const regex = /^(.*[/\\])/;
-  return path.replace(regex, trimDir(dir, separator));
+  dir = trimDir(dir, separator);
+  return regex.test(path) ? path.replace(regex, dir) : dir + path;
 }
 
 
@@ -106,6 +107,7 @@ function sortFilesByLastNumber(files) {
  * @returns {Promise<string>} auto increased path.
  */
 async function autoIncrease(path) {
+  // TODO: add parameter `template`: "(n)" or "[n]" ...
   let { dir, name, ext } = parse(path);
   dir = trimDir(dir);
   const reg = /\((\d+)\)$/;
