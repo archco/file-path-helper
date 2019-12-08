@@ -87,7 +87,7 @@ function removeLastNumber(file) {
   const { dir, name, ext } = parse(file);
   const reg = /(\d+|\(\d+\)|\{\d+\}|\[\d+\])$/;
   const newName = name.replace(reg, '').replace(/(\W|_)$/, '');
-  return `${dir ? trimDir(dir) : ''}${newName}${ext}`;
+  return trimDir(dir) + newName + ext;
 }
 
 /**
@@ -127,13 +127,12 @@ function sortFilesByLastNumber(files) {
 async function autoIncrease(path) {
   // TODO: add parameter `template`: "(n)" or "[n]" ...
   let { dir, name, ext } = parse(path);
-  dir = trimDir(dir);
   const reg = /\((\d+)\)$/;
   const numbering = name => {
     const num = parseInt(name.match(reg)[1]);
     return name.replace(reg, `(${num + 1})`);
   };
-  const newPath = () => dir + name + ext;
+  const newPath = () => trimDir(dir) + name + ext;
   if (await pathExists(newPath())) {
     name = reg.test(name) ? numbering(name) : `${name} (2)`;
     return await autoIncrease(newPath());
