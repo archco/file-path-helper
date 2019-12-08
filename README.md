@@ -6,7 +6,7 @@ Helpful methods for handling file path.
 
 ### Glob Promise
 
-> This function returns the **Promise** object.
+> This function returns **Promise** object.
 
 [Glob](https://github.com/isaacs/node-glob#glob) promise.
 
@@ -92,16 +92,32 @@ const file = removeLastNumber('my-favorite-13.txt');
 // file = 'my-favorite.txt'
 ```
 
-### Sort Files by Last Number
+### Natural Sort
 
-Sort files by last number.
+Sorting array of alphanumerical strings naturally.
 
-- @param `string[]` files
+- @param `string[]` arr
 - @returns `string[]`
+
+Example
+
+``` js
+const arr = [
+  'test 1.txt',
+  'test 11.txt',
+  'test 3.txt',
+];
+const sorted = naturalSort(arr);
+// sorted = [
+//   'test 1.txt',
+//   'test 3.txt',
+//   'test 11.txt',
+// ];
+```
 
 ### Auto Increase
 
-> This function returns the **Promise** object.
+> This function returns **Promise** object.
 
 If the same file exists, It's returns filename what increased number.
 
