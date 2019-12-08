@@ -72,8 +72,9 @@ function setDir(path, dir, separator = '/') {
  */
 function getLastNumber(path) {
   const name = parse(path).name;
-  const reg = /(\d+)$/;
-  return reg.test(name) ? name.match(reg)[1] : '';
+  const reg = /(\d+|\(\d+\)|\{\d+\}|\[\d+\])$/;
+  const match = name.match(reg);
+  return match ? /\d+/.exec(match[0])[0] : '' ;
 }
 
 /**
@@ -84,12 +85,29 @@ function getLastNumber(path) {
  */
 function removeLastNumber(file) {
   const { dir, name, ext } = parse(file);
-  const newName = name.replace(/(\d+)$/, '').replace(/(\W|_)$/, '');
-  return `${dir ? dir + '/' : ''}${newName}${ext}`;
+  const reg = /(\d+|\(\d+\)|\{\d+\}|\[\d+\])$/;
+  const newName = name.replace(reg, '').replace(/(\W|_)$/, '');
+  return `${dir ? trimDir(dir) : ''}${newName}${ext}`;
+}
+
+/**
+ * Sorting array of alphanumerical strings naturally.
+ * @link https://stackoverflow.com/questions/2802341/javascript-natural-sort-of-alphanumerical-strings
+ *
+ * @param {string[]} arr
+ * @returns {string[]}
+ */
+function naturalSort(arr) {
+  const collator = new Intl.Collator(undefined, {
+    numeric: true,
+    sensitivity: 'base',
+  });
+  return arr.sort(collator.compare);
 }
 
 /**
  * Sort files by last number.
+ * @deprecated in v1.1, use `naturalSort()` instead.
  *
  * @param {string[]} files
  * @returns {string[]}
@@ -145,6 +163,7 @@ module.exports = {
   getLastNumber,
   removeLastNumber,
   sortFilesByLastNumber,
+  naturalSort,
   autoIncrease,
   resolveOutputFile,
 };
