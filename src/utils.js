@@ -72,7 +72,7 @@ function setDir(path, dir, separator = '/') {
  */
 function getLastNumber(path) {
   const name = parse(path).name;
-  const reg = /(\d+|\(\d+\)|\{\d+\}|\[\d+\])$/;
+  const reg = /(\d+|[({[]\d+[)}\]])$/;
   const match = name.match(reg);
   return match ? /\d+/.exec(match[0])[0] : '' ;
 }
@@ -85,7 +85,7 @@ function getLastNumber(path) {
  */
 function removeLastNumber(file) {
   const { dir, name, ext } = parse(file);
-  const reg = /(\d+|\(\d+\)|\{\d+\}|\[\d+\])$/;
+  const reg = /(\d+|[({[]\d+[)}\]])$/;
   const newName = name.replace(reg, '').replace(/(\W|_)$/, '');
   return trimDir(dir) + newName + ext;
 }
