@@ -4,9 +4,21 @@ Helpful methods for handling file path.
 
 ## Methods
 
-### Glob Promise
+- [globPromise](#globPromise)
+- [replaceSeparator](#replaceSeparator)
+- [trimDir](#trimDir)
+- [setDir](#setDir)
+- [getLastNumber](#getLastNumber)
+- [removeLastNumber](#removeLastNumber)
+- [naturalSort](#naturalSort)
+- [autoIncrease](#autoIncrease)
+- [resolveOutputFile](#resolveOutputFile)
+- [bytesToSize](#bytesToSize)
+- [parseSize](#parseSize)
 
-> This function returns **Promise** object.
+### globPromise
+
+> This method returns **Promise** object.
 
 [Glob](https://github.com/isaacs/node-glob#glob) promise.
 
@@ -25,7 +37,7 @@ async function getFiles() {
 }
 ```
 
-### Replace Separator
+### replaceSeparator
 
 Replace directory separator.
 
@@ -33,14 +45,14 @@ Replace directory separator.
 - @param `Separator` separator default: '/'
 - @returns `string`
 
-### Trim Dir
+### trimDir
 
 Append last slash to directory.
 
 - @param `string` dir
 - @param `Separator` separator default: '/'
 
-### Set Dir
+### setDir
 
 Set directory part of path.
 
@@ -60,7 +72,7 @@ const newPath = setDir('dir/old/file.txt', 'new');
 
 Set directory part of path.
 
-### Get Last Number
+### getLastNumber
 
 Get last number from path.
 
@@ -76,7 +88,7 @@ const num = getLastNumber('my-favorite-13.txt');
 // num = '13'
 ```
 
-### Remove Last Number
+### removeLastNumber
 
 Remove last number from file name.
 
@@ -92,7 +104,7 @@ const file = removeLastNumber('my-favorite-13.txt');
 // file = 'my-favorite.txt'
 ```
 
-### Natural Sort
+### naturalSort
 
 Sorting array of alphanumerical strings naturally.
 
@@ -115,9 +127,9 @@ const sorted = naturalSort(arr);
 // ];
 ```
 
-### Auto Increase
+### autoIncrease
 
-> This function returns **Promise** object.
+> This method returns **Promise** object.
 
 If the same file exists, It's returns filename what increased number.
 
@@ -133,7 +145,7 @@ const file = await autoIncrease('dogs.txt');
 // file = 'dogs (2).txt';
 ```
 
-### Resolve Output File
+### resolveOutputFile
 
 Resolve output filename using templates such as `{name}`, `{source}` or `{ext}`.
 
@@ -148,6 +160,47 @@ const { resolveOutputFile } = require('file-path-helper');
 
 const output = resolveOutputFile('{name}-fixed.{ext}', 'dogs.txt');
 // output = 'dogs-fixed.txt'
+```
+
+### bytesToSize
+
+Converts bytes to human readable size. e.g. `10 MB` `1.25 GB`
+
+- @param `number` bytes
+- @param `number` decimals - default: 2
+- @returns `string`
+
+Example
+
+``` js
+const { bytesToSize } = require('file-path-helper');
+
+const fileSize = bytesToSize(2048);
+// fileSize = '2 KB'
+```
+
+### parseSize
+
+Parses string that includes file size and operator.
+
+``` ts
+interface Size {
+  bytes: number;
+  operator: string; // '>', '>=', '=' ...
+}
+```
+
+- @param `string` size - e.g `1kb` `10.5 MB` `>1gb` `=< 10 kb`
+- @returns `Size`
+
+Example
+
+``` js
+const { parseSize } = require('file-path-helper');
+
+const size = parseSize('> 1mb');
+// size.bytes = 1048576
+// size.operator = '>'
 ```
 
 ## License
