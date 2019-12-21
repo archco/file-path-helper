@@ -54,6 +54,11 @@ describe('#setDir', () => {
     const directory = './dir';
     expect(setDir(path, directory)).toBe('./dir/image.jpg');
   });
+
+  it('could set current dir via "" or "./"', () => {
+    expect(setDir('dir/file.txt', '')).toBe('file.txt');
+    expect(setDir('dir/file.txt', './')).toBe('./file.txt');
+  });
 });
 
 describe('#getLastNumber', () => {
