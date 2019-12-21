@@ -154,6 +154,44 @@ function resolveOutputFile(output, source) {
     .replace(/\.{ext}$/, src.ext);
 }
 
+/**
+ * Convert size in bytes.
+ * @see https://stackoverflow.com/questions/15900485/correct-way-to-convert-size-in-bytes-to-kb-mb-gb-in-javascript
+ *
+ * @param {number} bytes
+ * @param {number} decimals default: 2
+ * @returns {string}
+ */
+function bytesToSize(bytes, decimals = 2) {
+  if (bytes === 0) return '0 Bytes';
+  const k = 1024;
+  const dm = decimals < 0 ? 0 : decimals;
+  const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+  const i = Math.floor(Math.log(bytes) / Math.log(k));
+  const size = parseFloat((bytes / Math.pow(k, i)).toFixed(dm));
+  return `${size} ${sizes[i]}`;
+}
+
+/**
+ * Parses string that includes file size and operator.
+ * @typedef {Object} Size
+ * @property {number} bytes
+ * @property {string} operator
+ *
+ * @param {string} size e.g '10.5mb' '>1GB' '=<10kb'
+ * @returns {Size} Size
+ */
+function parseSize(size) {
+  const [, o, n, s] = size.match(/(^[><=]*)\s?([0-9]*\.?[0-9]*)\s?([A-Za-z]*)/);
+  const k = 1024;
+  const sizes = ['BYTES', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+  const i = s ? sizes.indexOf(s.toUpperCase()) : 0;
+  return {
+    bytes: parseFloat(n) * Math.pow(k, i),
+    operator: o ? o : '=',
+  };
+}
+
 module.exports = {
   globPromise,
   replaceSeparator,
@@ -165,4 +203,6 @@ module.exports = {
   naturalSort,
   autoIncrease,
   resolveOutputFile,
+  bytesToSize,
+  parseSize,
 };

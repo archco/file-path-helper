@@ -7,6 +7,8 @@ const {
   naturalSort,
   autoIncrease,
   resolveOutputFile,
+  bytesToSize,
+  parseSize,
 } = require('../src/utils');
 
 describe('#replaceSeparator', () => {
@@ -171,5 +173,40 @@ describe('#resolveOutputFile', () => {
   it('can also works extension part via {ext} template', () => {
     const source = 'sourceFile.m4a';
     expect(resolveOutputFile('output.{ext}', source)).toEqual('output.m4a');
+  });
+});
+
+describe('#bytesToSize', () => {
+  it('works.', () => {
+    expect(bytesToSize(0)).toBe('0 Bytes');
+    expect(bytesToSize(2048)).toBe('2 KB');
+    expect(bytesToSize(1048576)).toBe('1 MB');
+  });
+});
+
+describe('#parseSize', () => {
+  it('works.', () => {
+    expect(parseSize('500').bytes).toBe(500);
+    expect(parseSize('500bytes').bytes).toBe(500);
+    expect(parseSize('2 kb').bytes).toBe(2048);
+    expect(parseSize('1MB').bytes).toBe(1048576);
+  });
+
+  it('works also with operator', () => {
+    const size = parseSize('>2kb');
+    expect(size.bytes).toBe(2048);
+    expect(size.operator).toBe('>');
+
+    expect(parseSize('<1MB').operator).toBe('<');
+    expect(parseSize('<= 1 MB').operator).toBe('<=');
+    expect(parseSize('=<1MB').operator).toBe('=<');
+    expect(parseSize('>=1MB').operator).toBe('>=');
+    expect(parseSize('=>1MB').operator).toBe('=>');
+    expect(parseSize('= 1MB').operator).toBe('=');
+    expect(parseSize('1MB').operator).toBe('=');
+  });
+
+  it('works with float number.', () => {
+    expect(parseSize('>= 1.5 Mb').bytes).toBe(1572864);
   });
 });
