@@ -2,19 +2,23 @@
 
 Helpful methods for handling file path.
 
-## Methods
+## Table of contents
 
-- [globPromise](#globPromise)
-- [replaceSeparator](#replaceSeparator)
-- [trimDir](#trimDir)
-- [setDir](#setDir)
-- [getLastNumber](#getLastNumber)
-- [removeLastNumber](#removeLastNumber)
-- [naturalSort](#naturalSort)
-- [autoIncrease](#autoIncrease)
-- [resolveOutputFile](#resolveOutputFile)
-- [bytesToSize](#bytesToSize)
-- [parseSize](#parseSize)
+- Methods
+  - [globPromise](#globPromise)
+  - [replaceSeparator](#replaceSeparator)
+  - [trimDir](#trimDir)
+  - [setDir](#setDir)
+  - [getLastNumber](#getLastNumber)
+  - [removeLastNumber](#removeLastNumber)
+  - [naturalSort](#naturalSort)
+  - [autoIncrease](#autoIncrease)
+  - [resolveOutputFile](#resolveOutputFile)
+  - [bytesToSize](#bytesToSize)
+  - [parseSize](#parseSize)
+  - [truncate](#truncate)
+  - [sanitize](#sanitize)
+- [License](#License)
 
 ### globPromise
 
@@ -201,6 +205,40 @@ const { parseSize } = require('file-path-helper');
 const size = parseSize('> 1mb');
 // size.bytes = 1048576
 // size.operator = '>'
+```
+
+### truncate
+
+Truncate string what given length.
+
+- @param `string` str
+- @param `number` length
+- @param `string` ellipsis - default: `'…'`
+- @returns `string`
+
+Example
+
+``` js
+const { truncate } = require('file-path-helper');
+
+const str = truncate('1234567890', 6);
+// str = '12345…'
+```
+
+### sanitize
+
+Sanitize string for filename safe.
+
+- @param `string` str
+- @returns `string` replacer - default: `''`
+
+Example
+
+``` js
+const { sanitize } = require('file-path-helper');
+
+const str = sanitize(' he*llo/_<wo:rld');
+// str = 'hello_world'
 ```
 
 ## License

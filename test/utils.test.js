@@ -9,6 +9,8 @@ const {
   resolveOutputFile,
   bytesToSize,
   parseSize,
+  truncate,
+  sanitize,
 } = require('../src/utils');
 
 describe('#replaceSeparator', () => {
@@ -208,5 +210,21 @@ describe('#parseSize', () => {
 
   it('works with float number.', () => {
     expect(parseSize('>= 1.5 Mb').bytes).toBe(1572864);
+  });
+});
+
+describe('#sanitize', () => {
+  it('sanitize string for filename.', () => {
+    expect(sanitize(' he*llo?')).toBe('hello');
+    expect(sanitize(' he*llo?', ' ')).toBe('he llo');
+    expect(sanitize(' he*llo/_<wo:rld')).toBe('hello_world');
+    expect(sanitize('https://github.com/')).toBe('github.com');
+  });
+});
+
+describe('#truncate', () => {
+  it('truncate string', () => {
+    expect(truncate('1234567890', 6)).toBe('12345…');
+    expect(truncate('1234567890', 8, '...')).toBe('12345...');
   });
 });
