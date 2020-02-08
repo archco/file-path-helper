@@ -2,8 +2,8 @@
  * truncate string.
  *
  * @param {string} str
- * @param {number} length
- * @param {string} ellipsis
+ * @param {number} length default: 40
+ * @param {string} ellipsis default: '…'
  * @returns {string}
  */
 function truncate(str, length = 40, ellipsis = '…') {
@@ -14,7 +14,7 @@ function truncate(str, length = 40, ellipsis = '…') {
 
 /**
  * Sanitize string for safe filename.
- * @link https://github.com/parshap/node-sanitize-filename#readme
+ * @see https://github.com/parshap/node-sanitize-filename#readme
  *
  * @param {string} str
  * @param {string} replacer default: `''`

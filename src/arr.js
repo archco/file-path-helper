@@ -1,6 +1,6 @@
 /**
  * Sorting array of alphanumerical strings naturally.
- * @link https://stackoverflow.com/questions/2802341/javascript-natural-sort-of-alphanumerical-strings
+ * @see https://stackoverflow.com/questions/2802341/javascript-natural-sort-of-alphanumerical-strings
  *
  * @param {string[]} arr
  * @returns {string[]}

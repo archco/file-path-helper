@@ -12,7 +12,7 @@ const { pathExists } = require('fs-extra');
  *
  * @param {string} pattern
  * @param {GlobOptions} options
- * @returns {Promise.<Array<String>, Error>}
+ * @returns {Promise<string[], Error>}
  */
 function globPromise(pattern, options) {
   return new Promise((resolve, reject) => {
