@@ -11,6 +11,8 @@ const {
   parseSize,
   truncate,
   sanitize,
+  filter,
+  chunks,
 } = require('../src/index');
 
 describe('#replaceSeparator', () => {
@@ -226,5 +228,46 @@ describe('#truncate', () => {
   it('truncate string', () => {
     expect(truncate('1234567890', 6)).toBe('12345…');
     expect(truncate('1234567890', 8, '...')).toBe('12345...');
+  });
+});
+
+describe('#filter', () => {
+  it('works.', async () => {
+    const arr = [1, 2, 3, 4, 5];
+    const doSomething = () => Promise.resolve();
+
+    const res = await filter(arr, async v => {
+      await doSomething();
+      return (v % 2) == 1;
+    });
+    expect(res).toStrictEqual([1, 3, 5]);
+  });
+
+  it('index arg test', async () => {
+    const arr = [1, 2, 3, 4, 5];
+    const doSomething = () => Promise.resolve();
+
+    const res = await filter(arr, async (v, i) => {
+      await doSomething();
+      return (i % 2) == 1;
+    });
+    expect(res).toStrictEqual([2, 4]);
+  });
+});
+
+describe('#chunks', () => {
+  it('works.', () => {
+    const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
+    expect(chunks(arr, 3)).toStrictEqual([[1, 2, 3], [4, 5, 6], [7, 8, 9], [0]]);
+  });
+
+  it('if set size to 0, chunk size is arr.length', () => {
+    const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
+    expect(chunks(arr, 0)).toStrictEqual([[1, 2, 3, 4, 5, 6, 7, 8, 9, 0]]);
+  });
+
+  it('if given array is smaller than size, chunk size is arr.length', () => {
+    const arr = [1, 2, 3];
+    expect(chunks(arr, 10)).toStrictEqual([[1, 2, 3]]);
   });
 });
