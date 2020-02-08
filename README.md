@@ -4,21 +4,31 @@ Helpful methods for handling file path.
 
 ## Table of contents
 
-- Methods
+- File Methods
   - [globPromise](#globPromise)
   - [replaceSeparator](#replaceSeparator)
   - [trimDir](#trimDir)
   - [setDir](#setDir)
   - [getLastNumber](#getLastNumber)
   - [removeLastNumber](#removeLastNumber)
-  - [naturalSort](#naturalSort)
   - [autoIncrease](#autoIncrease)
   - [resolveOutputFile](#resolveOutputFile)
   - [bytesToSize](#bytesToSize)
   - [parseSize](#parseSize)
+- String Methods
   - [truncate](#truncate)
   - [sanitize](#sanitize)
+- Array Methods
+  - [naturalSort](#naturalSort)
+  - [filter](#filter)
+  - [chunks](#chunks)
+- Date Methods
+  - [parseDate](#parseDate)
+  - [getDates](#getDates)
+  - [diffDays](#diffDays)
 - [License](#License)
+
+## File Methods
 
 ### globPromise
 
@@ -108,29 +118,6 @@ const file = removeLastNumber('my-favorite-13.txt');
 // file = 'my-favorite.txt'
 ```
 
-### naturalSort
-
-Sorting array of alphanumerical strings naturally.
-
-- @param `string[]` arr
-- @returns `string[]`
-
-Example
-
-``` js
-const arr = [
-  'test 1.txt',
-  'test 11.txt',
-  'test 3.txt',
-];
-const sorted = naturalSort(arr);
-// sorted = [
-//   'test 1.txt',
-//   'test 3.txt',
-//   'test 11.txt',
-// ];
-```
-
 ### autoIncrease
 
 > This method returns **Promise** object.
@@ -207,6 +194,8 @@ const size = parseSize('> 1mb');
 // size.operator = '>'
 ```
 
+## String Methods
+
 ### truncate
 
 Truncate string what given length.
@@ -239,6 +228,135 @@ const { sanitize } = require('file-path-helper');
 
 const str = sanitize(' he*llo/_<wo:rld');
 // str = 'hello_world'
+```
+
+## Array Methods
+
+### naturalSort
+
+Sorting array of alphanumerical strings naturally.
+
+- @param `string[]` arr
+- @returns `string[]`
+
+Example
+
+``` js
+const arr = [
+  'test 1.txt',
+  'test 11.txt',
+  'test 3.txt',
+];
+const sorted = naturalSort(arr);
+// sorted = [
+//   'test 1.txt',
+//   'test 3.txt',
+//   'test 11.txt',
+// ];
+```
+
+### filter
+
+Filtering an array with `Promise`.
+
+- @param `T[]` arr - filtering target array.
+- @param `function(T, number, T[]): Promise<boolean>` cb - callback function for filtering. arguments is value, index, array.
+- @returns `Promise<T[]>`
+
+Example
+
+``` js
+const arr = [1, 2, 3, 4, 5];
+const doSomething = () => Promise.resolve();
+
+const res = await filter(arr, async v => {
+  await doSomething();
+  return (v % 2) == 1;
+});
+// res = [1, 3, 5]
+```
+
+### chunks
+
+Split array into chunks.
+
+- @param `T[]` arr
+- @param `number` size
+- @returns `T[][]`
+
+Example
+
+``` js
+const arr = [1, 2, 3, 4, 5, 6, 7];
+const res = chunks(arr, 3);
+// res = [[1, 2, 3], [4, 5, 6], [7]]
+```
+
+## Date Methods
+
+### parseDate
+
+Parsing the value to date. it's useful handling 'date'(not hours and minutes) purpose.
+
+``` ts
+interface ParsedDate {
+  date: Date;
+  year: number;
+  month: number;
+  day: number;
+  toDateString: () => string;
+}
+```
+
+- @param `string`|`number`|`Date` value
+- @returns `ParsedDate`
+
+Example
+
+``` js
+const parsed = parseDate('feb 17, 1995 03:24:00');
+// parsed = {
+//   date: new Date('feb 17, 1995 03:24:00'), // Date object
+//   year: 1995,
+//   month: 2,
+//   day: 17,
+//   toDateString: '1995-02-17', // ISO date format
+// }
+```
+
+### getDates
+
+Returns array of date strings.
+
+- @param `string` value - date string. e.g. '2020-01-01' or '2020-01-01~2020-01-31'
+- @returns `string[]`
+
+Example
+
+``` js
+const dates = getDates('2020-02-01~2020-02-05');
+// dates = [
+//   '2020-02-01',
+//   '2020-02-02',
+//   '2020-02-03',
+//   '2020-02-04',
+//   '2020-02-05',
+// ]
+```
+
+### diffDays
+
+Returns difference between two dates.
+
+- @param `string`|`number`|`Date` a
+- @param `string`|`number`|`Date` b
+- @returns `number`
+
+Example
+
+``` js
+const days = diffDays('2020-02-24', '2020-03-02');
+// days = 7
 ```
 
 ## License

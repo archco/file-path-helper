@@ -1,5 +1,5 @@
 /**
- * Parse date
+ * Parsing the value to date. it's useful handling 'date'(not hours and minutes) purpose.
  *
  * @typedef ParsedDate
  * @property {Date} date
@@ -9,6 +9,7 @@
  * @property {function(): string} toDateString e.g. '2019-12-25'
  *
  * @param {string|number|Date} value
+ * @returns {ParsedDate}
  */
 function parseDate(value) {
   const date = new Date(value);

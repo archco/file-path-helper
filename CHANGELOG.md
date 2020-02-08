@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.4.0] - 2020-02-08
+
+- Added new array methods: `filter` and `chunks`. (fe6e6be7a41e8d864cae7d2120179d141c56cdc3)
+- Added new date methods: `parseDate`, `getDates` and `diffDays`. (2491f9df52c801931296caab36dd096ad81645cf)
+- Removed deprecated method `sortFilesByLastNumber`. use `naturalSort` instead. (e2d41731e87db16fb136b80c692c2182fe2eff11)
+
 ## [1.3.0] - 2019-12-26
 
 - Added a new method `truncate`.
@@ -40,7 +46,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 First Release!
 
-[Unreleased]: https://github.com/archco/file-path-helper/compare/v1.3.0...HEAD
+[Unreleased]: https://github.com/archco/file-path-helper/compare/v1.4.0...HEAD
+[1.4.0]: https://github.com/archco/file-path-helper/compare/v1.3.0...v1.4.0
 [1.3.0]: https://github.com/archco/file-path-helper/compare/v1.2.0...v1.3.0
 [1.2.0]: https://github.com/archco/file-path-helper/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/archco/file-path-helper/compare/v1.0.1...v1.1.0

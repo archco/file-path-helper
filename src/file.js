@@ -167,7 +167,6 @@ module.exports = {
   setDir,
   getLastNumber,
   removeLastNumber,
-  sortFilesByLastNumber,
   autoIncrease,
   resolveOutputFile,
   bytesToSize,
