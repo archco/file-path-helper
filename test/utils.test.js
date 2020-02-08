@@ -13,6 +13,9 @@ const {
   sanitize,
   filter,
   chunks,
+  parseDate,
+  diffDays,
+  getDates,
 } = require('../src/index');
 
 describe('#replaceSeparator', () => {
@@ -269,5 +272,49 @@ describe('#chunks', () => {
   it('if given array is smaller than size, chunk size is arr.length', () => {
     const arr = [1, 2, 3];
     expect(chunks(arr, 10)).toStrictEqual([[1, 2, 3]]);
+  });
+});
+
+describe('#parseDate', () => {
+  it('works.', () => {
+    const date = parseDate('2019-12-25');
+    expect(date.year).toBe(2019);
+    expect(date.month).toBe(12);
+    expect(date.day).toBe(25);
+    expect(date.date).toBeInstanceOf(Date);
+    expect(date.toDateString()).toBe('2019-12-25');
+  });
+
+  it('also works.', () => {
+    const date = parseDate('2019-1-5');
+    expect(date.year).toBe(2019);
+    expect(date.month).toBe(1);
+    expect(date.day).toBe(5);
+    expect(date.date).toBeInstanceOf(Date);
+    expect(date.toDateString()).toBe('2019-01-05');
+  });
+});
+
+describe('#diffDays', () => {
+  it('works.', () => {
+    const d1 = new Date('2020-01-01');
+    const d2 = new Date('2020-01-10');
+    expect(diffDays(d1, d2)).toBe(9);
+  });
+
+  it('also can using date as string.', () => {
+    expect(diffDays('2020-02-24', '2020-03-02')).toBe(7);
+  });
+});
+
+describe('#getDates', () => {
+  it('works.', () => {
+    expect(getDates('2020-01-01~2020-01-05')).toStrictEqual([
+      '2020-01-01',
+      '2020-01-02',
+      '2020-01-03',
+      '2020-01-04',
+      '2020-01-05',
+    ]);
   });
 });

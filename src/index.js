@@ -1,9 +1,11 @@
-const strUtils = require('./str');
 const arrUtils = require('./arr');
+const dateUtils = require('./date');
 const fileUtils = require('./file');
+const strUtils = require('./str');
 
 module.exports = Object.assign({},
-  strUtils,
   arrUtils,
+  dateUtils,
   fileUtils,
+  strUtils,
 );
