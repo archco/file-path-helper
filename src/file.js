@@ -86,18 +86,6 @@ function removeLastNumber(file) {
 }
 
 /**
- * Sort files by last number.
- * @deprecated in v1.1, use `naturalSort()` instead.
- *
- * @param {string[]} files
- * @returns {string[]}
- */
-function sortFilesByLastNumber(files) {
-  const num = f => parseInt(getLastNumber(f));
-  return files.sort((a, b) => num(a) - num(b));
-}
-
-/**
  * Auto increase path.
  * If the same file exists, It's returns filename what increased number.
  *
