@@ -11,7 +11,7 @@ const {
   parseSize,
   truncate,
   sanitize,
-} = require('../src/utils');
+} = require('../src/index');
 
 describe('#replaceSeparator', () => {
   it('can replace back-slash to slash.', () => {

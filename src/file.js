@@ -3,13 +3,8 @@ const glob = require('glob');
 const { pathExists } = require('fs-extra');
 
 /**
- * Directory Separator
- * @typedef {'/'|'\\'} Separator
-*/
-
-/**
- * Glob Options
- * @typedef {import('glob').IOptions} GlobOptions
+ * @typedef {'/'|'\\'} Separator Directory Separator
+ * @typedef {import('glob').IOptions} GlobOptions Glob Options
  */
 
 /**
@@ -88,21 +83,6 @@ function removeLastNumber(file) {
   const reg = /(\d+|[({[]\d+[)}\]])$/;
   const newName = name.replace(reg, '').replace(/(\W|_)$/, '');
   return trimDir(dir) + newName + ext;
-}
-
-/**
- * Sorting array of alphanumerical strings naturally.
- * @link https://stackoverflow.com/questions/2802341/javascript-natural-sort-of-alphanumerical-strings
- *
- * @param {string[]} arr
- * @returns {string[]}
- */
-function naturalSort(arr) {
-  const collator = new Intl.Collator(undefined, {
-    numeric: true,
-    sensitivity: 'base',
-  });
-  return arr.sort(collator.compare);
 }
 
 /**
@@ -192,35 +172,6 @@ function parseSize(size) {
   };
 }
 
-/**
- * truncate string.
- *
- * @param {string} str
- * @param {number} length
- * @param {string} ellipsis
- * @returns {string}
- */
-function truncate(str, length = 40, ellipsis = '…') {
-  return str.length < length
-    ? str
-    : str.substr(0, length - ellipsis.length) + ellipsis;
-}
-
-/**
- * Sanitize string for safe filename.
- * @link https://github.com/parshap/node-sanitize-filename#readme
- *
- * @param {string} str
- * @param {string} replacer default: `''`
- * @returns {string}
- */
-function sanitize(str, replacer = '') {
-  return str.replace(/(https|http)/g, '') // remove 'http'
-    .replace(/\t|[ ]{2,}/g, ' ')          // two spaces or tab -> one space
-    .replace(/[/:?<>\\*|"]/g, replacer)   // sanitize
-    .trim();
-}
-
 module.exports = {
   globPromise,
   replaceSeparator,
@@ -229,11 +180,8 @@ module.exports = {
   getLastNumber,
   removeLastNumber,
   sortFilesByLastNumber,
-  naturalSort,
   autoIncrease,
   resolveOutputFile,
   bytesToSize,
   parseSize,
-  truncate,
-  sanitize,
 };
