@@ -320,8 +320,8 @@ const parsed = parseDate('feb 17, 1995 03:24:00');
 //   year: 1995,
 //   month: 2,
 //   day: 17,
-//   toDateString: '1995-02-17', // ISO date format
 // }
+// parsed.toDateString() // '1995-02-17' ISO date format
 ```
 
 ### getDates
