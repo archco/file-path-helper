@@ -224,6 +224,7 @@ describe('#sanitize', () => {
     expect(sanitize(' he*llo?', ' ')).toBe('he llo');
     expect(sanitize(' he*llo/_<wo:rld')).toBe('hello_world');
     expect(sanitize('https://github.com/')).toBe('github.com');
+    expect(sanitize('string\btest', ' ')).toBe('string test');
   });
 });
 
@@ -231,6 +232,7 @@ describe('#truncate', () => {
   it('truncate string', () => {
     expect(truncate('1234567890', 6)).toBe('12345…');
     expect(truncate('1234567890', 8, '...')).toBe('12345...');
+    expect(truncate('a가나다라bcd', 3, '')).toBe('a가나');
   });
 });
 
