@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## 1.4.5 - 2022-04-04
+
+- Update dependencies.
+
 ## 1.4.4 - 2022-02-01
 
 - Handling [Control Codes](https://en.wikipedia.org/wiki/C0_and_C1_control_codes) in `sanitize` method.
