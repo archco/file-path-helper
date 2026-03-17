@@ -31,11 +31,14 @@ export interface ParsedDate {
 /**
  * Glob promise.
  *
+ * @deprecated Use `glob` directly instead.
  * @param {string} pattern
  * @param {GlobOptions} options
  * @returns {Promise<string[], Error>}
  */
 export function globPromise(pattern: string, options: GlobOptions): Promise<string[]>;
+
+export { glob } from 'glob';
 
 /**
  * Replace directory separator.

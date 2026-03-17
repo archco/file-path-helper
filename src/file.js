@@ -4,7 +4,7 @@ import { pathExists } from 'fs-extra';
 
 /**
  * @typedef {'/'|'\\'} Separator Directory Separator
- * @typedef {import('glob').IOptions} GlobOptions Glob Options
+ * @typedef {import('glob').GlobOptions} GlobOptions Glob Options
  */
 
 /**

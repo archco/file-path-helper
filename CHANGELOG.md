@@ -7,7 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## 2.0.0 - 2026-03-17
+## 2.0.1 - 2026-03-17
+
+- update ts index
+
+## [2.0.0] - 2026-03-17
 
 - Convert to ESM module system.
 - Deprecated `globPromise` method. use `glob` instead.
@@ -65,7 +69,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 First Release!
 
-[Unreleased]: https://github.com/archco/file-path-helper/compare/v1.4.0...HEAD
+[Unreleased]: https://github.com/archco/file-path-helper/compare/v2.0.0...HEAD
+[2.0.0]: https://github.com/archco/file-path-helper/compare/v1.4.0...v2.0.0
 [1.4.0]: https://github.com/archco/file-path-helper/compare/v1.3.0...v1.4.0
 [1.3.0]: https://github.com/archco/file-path-helper/compare/v1.2.0...v1.3.0
 [1.2.0]: https://github.com/archco/file-path-helper/compare/v1.1.0...v1.2.0
