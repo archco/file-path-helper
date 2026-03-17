@@ -1,0 +1,7 @@
+{
+  "markdownlint.config": {
+    "default": true,
+    "MD051": false
+  },
+  "json.schemaDownload.enable": false
+}
