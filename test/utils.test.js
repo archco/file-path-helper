@@ -84,6 +84,7 @@ describe('#getLastNumber', () => {
     expect(getLastNumber('test [21].txt')).toEqual('21');
     expect(getLastNumber('2019_test_{11}.txt')).toEqual('11');
     expect(getLastNumber('2019 test.txt')).toEqual('');
+    expect(getLastNumber('domain.com@filename_1.mp4')).toEqual('1');
   });
 });
 
