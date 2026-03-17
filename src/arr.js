@@ -41,7 +41,7 @@ function chunks(arr, size) {
   return Array(Math.ceil(arr.length / size)).fill().map((_, index) => index * size).map(begin => arr.slice(begin, begin + size));
 }
 
-module.exports = {
+export {
   naturalSort,
   filter,
   chunks,

@@ -5,7 +5,7 @@ Helpful methods for handling file path.
 ## Table of contents
 
 - File Methods
-  - [globPromise](#globPromise)
+  - [glob](#glob)
   - [replaceSeparator](#replaceSeparator)
   - [trimDir](#trimDir)
   - [setDir](#setDir)
@@ -30,11 +30,11 @@ Helpful methods for handling file path.
 
 ## File Methods
 
-### globPromise
+### glob
 
 > This method returns **Promise** object.
 
-[Glob](https://github.com/isaacs/node-glob#glob) promise.
+[Glob](https://github.com/isaacs/node-glob#glob)
 
 - @param `string` pattern
 - @param `GlobOptions` options
@@ -43,10 +43,10 @@ Helpful methods for handling file path.
 Example
 
 ``` js
-const { globPromise } = require('file-path-helper');
+import { glob } from 'file-path-helper';
 
 async function getFiles() {
-  const files = await globPromise('*.*');
+  const files = await glob('*.*');
   return files;
 }
 ```
@@ -78,7 +78,7 @@ Set directory part of path.
 Example
 
 ``` js
-const { setDir } = require('file-path-helper');
+import { setDir } from 'file-path-helper';
 
 const newPath = setDir('dir/old/file.txt', 'new');
 // newPath = 'new/file.txt'
@@ -96,7 +96,7 @@ Get last number from path.
 Example
 
 ``` js
-const { getLastNumber } = require('file-path-helper');
+import { getLastNumber } from 'file-path-helper';
 
 const num = getLastNumber('my-favorite-13.txt');
 // num = '13'
@@ -112,7 +112,7 @@ Remove last number from file name.
 Example
 
 ``` js
-const { removeLastNumber } = require('file-path-helper');
+import { removeLastNumber } from 'file-path-helper';
 
 const file = removeLastNumber('my-favorite-13.txt');
 // file = 'my-favorite.txt'
@@ -130,7 +130,7 @@ If the same file exists, It's returns filename what increased number.
 Example
 
 ``` js
-const { autoIncrease } = require('file-path-helper');
+import { autoIncrease } from 'file-path-helper';
 
 const file = await autoIncrease('dogs.txt');
 // file = 'dogs (2).txt';
@@ -147,7 +147,7 @@ Resolve output filename using templates such as `{name}`, `{source}` or `{ext}`.
 Example
 
 ``` js
-const { resolveOutputFile } = require('file-path-helper');
+import { resolveOutputFile } from 'file-path-helper';
 
 const output = resolveOutputFile('{name}-fixed.{ext}', 'dogs.txt');
 // output = 'dogs-fixed.txt'
@@ -164,7 +164,7 @@ Converts bytes to human readable size. e.g. `10 MB` `1.25 GB`
 Example
 
 ``` js
-const { bytesToSize } = require('file-path-helper');
+import { bytesToSize } from 'file-path-helper';
 
 const fileSize = bytesToSize(2048);
 // fileSize = '2 KB'
@@ -187,7 +187,7 @@ interface Size {
 Example
 
 ``` js
-const { parseSize } = require('file-path-helper');
+import { parseSize } from 'file-path-helper';
 
 const size = parseSize('> 1mb');
 // size.bytes = 1048576
@@ -208,7 +208,7 @@ Truncate string what given length.
 Example
 
 ``` js
-const { truncate } = require('file-path-helper');
+import { truncate } from 'file-path-helper';
 
 const str = truncate('1234567890', 6);
 // str = '12345…'
@@ -224,7 +224,7 @@ Sanitize string for filename safe.
 Example
 
 ``` js
-const { sanitize } = require('file-path-helper');
+import { sanitize } from 'file-path-helper';
 
 const str = sanitize(' he*llo/_<wo:rld');
 // str = 'hello_world'

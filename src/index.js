@@ -1,11 +1,4 @@
-const arrUtils = require('./arr');
-const dateUtils = require('./date');
-const fileUtils = require('./file');
-const strUtils = require('./str');
-
-module.exports = Object.assign({},
-  arrUtils,
-  dateUtils,
-  fileUtils,
-  strUtils,
-);
+export * from './arr.js';
+export * from './date.js';
+export * from './file.js';
+export * from './str.js';

@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## 2.0.0 - 2026-03-17
+
+- Convert to ESM module system.
+- Deprecated `globPromise` method. use `glob` instead.
+- Update dependencies.
+
 ## 1.4.5 - 2022-04-04
 
 - Update dependencies.

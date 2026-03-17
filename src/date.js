@@ -70,7 +70,7 @@ function diffDays(a, b) {
   return Math.floor((utc2 - utc1) / msPerDay);
 }
 
-module.exports = {
+export {
   parseDate,
   getDates,
   diffDays,

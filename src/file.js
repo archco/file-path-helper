@@ -1,6 +1,6 @@
-const { parse } = require('path');
-const glob = require('glob');
-const { pathExists } = require('fs-extra');
+import { parse } from 'path';
+import { glob } from 'glob';
+import { pathExists } from 'fs-extra';
 
 /**
  * @typedef {'/'|'\\'} Separator Directory Separator
@@ -10,17 +10,12 @@ const { pathExists } = require('fs-extra');
 /**
  * Glob promise.
  *
+ * @deprecated since version 3.0.0. Use `glob` directly instead.
  * @param {string} pattern
  * @param {GlobOptions} options
  * @returns {Promise<string[], Error>}
  */
-function globPromise(pattern, options) {
-  return new Promise((resolve, reject) => {
-    glob(pattern, options, (err, files) => {
-      err === null ? resolve(files) : reject(err);
-    });
-  });
-}
+const globPromise = glob;
 
 /**
  * Replace directory separator.
@@ -160,7 +155,8 @@ function parseSize(size) {
   };
 }
 
-module.exports = {
+export {
+  glob,
   globPromise,
   replaceSeparator,
   trimDir,

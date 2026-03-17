@@ -1,4 +1,4 @@
-import { IOptions } from 'glob';
+import { GlobOptions } from 'glob';
 
 /**
  * Directory Separator
@@ -35,7 +35,7 @@ export interface ParsedDate {
  * @param {GlobOptions} options
  * @returns {Promise<string[], Error>}
  */
-export function globPromise(pattern: string, options: IOptions): Promise<string[]>;
+export function globPromise(pattern: string, options: GlobOptions): Promise<string[]>;
 
 /**
  * Replace directory separator.

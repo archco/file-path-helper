@@ -1,4 +1,4 @@
-const {
+import {
   replaceSeparator,
   trimDir,
   setDir,
@@ -16,7 +16,7 @@ const {
   parseDate,
   diffDays,
   getDates,
-} = require('../src/index');
+} from '../src/index.js';
 
 describe('#replaceSeparator', () => {
   it('can replace back-slash to slash.', () => {
