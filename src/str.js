@@ -30,7 +30,7 @@ function sanitize(str, replacer = '') {
     .trim();
 }
 
-module.exports = {
+export {
   truncate,
   sanitize,
 };
